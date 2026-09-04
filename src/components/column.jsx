@@ -1,23 +1,15 @@
 import Card from"./card";
-function Column({title}) {
+function Column({title,tasks}) {
+  const filteredTasks =tasks.filter(
+    (task)=>task.status === title);
+  
   return (
     <div>
         <h2>{title}</h2>
-        
-      <Card
-        title="Build Navbar"
-        description="Create the navigation bar"
-      />
-
-      <Card
-        title="Create Dashboard"
-        description="Build the main dashboard"
-      />
-
-      <Card
-        title="Connect API"
-        description="Connect the backend API"
-      />
+        {filteredTasks.map(task=>(
+          <Card key={task.id}
+                title={task.name}/>
+        ))}
     </div>
   );
 }
