@@ -1,7 +1,7 @@
 import CalendarView from "./components/CalendarView";
 import ListView from "./components/ListView";
-import Board from "./components/board";
-import AddTaskForm from "./components/addTaskForm";
+import Board from "./components/Board";
+import AddTaskForm from "./components/AddTaskForm";
 import "./app.css";
 import { useState } from "react";
 
