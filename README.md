@@ -1,16 +1,73 @@
-# React + Vite
+# FlowBoard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Kanban-style task management board built with React + Vite. Add tasks, move them across Todo / In Progress / Done, edit or delete them, and switch between Board, List, and Calendar views.
 
-Currently, two official plugins are available:
+🔗 **Live demo:** [flowboard-views.vercel.app](https://flowboard-views.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Kanban board view** — tasks organized into `Todo`, `Progress`, and `Done` columns
+- **Multiple views** — toggle between Board, List, and Calendar layouts
+- **Add / Edit / Delete tasks** — full CRUD on tasks via simple forms
+- **Task metadata** — title, description, priority, and due date per task
+- **Client-side state** — instant UI updates with React's `useState`, no backend needed
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Layer      | Tech                  |
+|------------|-----------------------|
+| Framework  | React 19              |
+| Build tool | Vite 8                |
+| Linting    | ESLint 10             |
+| Deployment | Vercel                |
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Board.jsx          # Kanban board layout, task state orchestration
+│   ├── column.jsx         # Single column (filters tasks by status)
+│   ├── card.jsx            # Individual task card
+│   ├── AddTaskForm.jsx     # New task creation form
+│   ├── EditTaskForm.jsx    # Edit existing task
+│   ├── ListView.jsx        # Flat list view of all tasks
+│   └── CalendarView.jsx    # Calendar-based task view
+├── App.jsx                 # View switching + top-level task state
+└── main.jsx                 # App entry point
+```
+
+## Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/rossniraja/flowboard.git
+cd flowboard
+
+# Install dependencies
+npm install
+
+# Run the dev server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Roadmap
+
+- [ ] Drag-and-drop between columns
+- [ ] Persistent storage (localStorage or a backend)
+- [ ] Task filtering by priority / due date
+- [ ] User auth for multi-user boards
+
+## Author
+
+**Rossni Raja**
+[GitHub](https://github.com/rossniraja)
+
+---
+
+*Built as a personal project to practice React component architecture, state management, and deployment workflows.*
