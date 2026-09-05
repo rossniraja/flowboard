@@ -1,5 +1,5 @@
 import Card from"./card";
-function Column({title,tasks}) {
+function Column({title,tasks,setEditTask ,onDelete}) {
   const filteredTasks =tasks.filter(
     (task)=>task.status === title);
   
@@ -8,7 +8,12 @@ function Column({title,tasks}) {
         <h2>{title}</h2>
         {filteredTasks.map(task=>(
           <Card key={task.id}
-                title={task.name}/>
+                title={task.name}
+                 description={task.description}
+  priority={task.priority}
+  dueDate={task.dueDate}
+  onEdit={() => setEditTask(task)}
+  onDelete={() => onDelete(task.id)}/>
         ))}
     </div>
   );

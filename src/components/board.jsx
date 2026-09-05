@@ -1,34 +1,46 @@
-import AddTaskForm from "./addTaskForm";
+import EditTaskForm from "./EditTaskForm";
 import { useState } from "react";
 import Column from "./column";
 
-function Board() {
-  const [tasks, setTasks] = useState([
-  {
-    id: "1",
-    name: "assign",
-    status: "todo",
-  },
-  {
-    id: "2",
-    name: "seminar",
-    status: "progress",
+function Board({ tasks, setTasks }) {
+  const [editTask, setEditTask] = useState(null);
+
+  function handleDelete(id) {
+    setTasks((prevTasks) =>
+      prevTasks.filter((task) => task.id !== id)
+    );
   }
-]);
-  const [showForm, setShowForm] = useState(false);
 
   return (
-    <div>
-      <h1>FlowBoard</h1>
-      <button onClick={() => setShowForm(true)}>Add Task</button>
-      {showForm && <AddTaskForm 
-  setTasks={setTasks} 
-  setShowForm={setShowForm} />}
-      <div className="board">
-        <Column title="todo" tasks={tasks} />
-        <Column title="progress" tasks={tasks} />
-        <Column title="done" tasks={tasks} />
-      </div>
+    <div className="board">
+      <Column
+        title="todo"
+        tasks={tasks}
+        setEditTask={setEditTask}
+        onDelete={handleDelete}
+      />
+
+      <Column
+        title="progress"
+        tasks={tasks}
+        setEditTask={setEditTask}
+        onDelete={handleDelete}
+      />
+
+      <Column
+        title="done"
+        tasks={tasks}
+        setEditTask={setEditTask}
+        onDelete={handleDelete}
+      />
+
+      {editTask && (
+        <EditTaskForm
+          task={editTask}
+          setTasks={setTasks}
+          setEditTask={setEditTask}
+        />
+      )}
     </div>
   );
 }
