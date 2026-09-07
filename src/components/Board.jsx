@@ -10,7 +10,15 @@ function Board({ tasks, setTasks }) {
       prevTasks.filter((task) => task.id !== id)
     );
   }
-
+function handleDrop(taskId,newStatus){
+   setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, status: newStatus }
+          : task
+      )
+    );
+}
   return (
     <div className="board">
       <Column
@@ -18,6 +26,8 @@ function Board({ tasks, setTasks }) {
         tasks={tasks}
         setEditTask={setEditTask}
         onDelete={handleDelete}
+          onDrop={handleDrop}
+
       />
 
       <Column
@@ -25,6 +35,8 @@ function Board({ tasks, setTasks }) {
         tasks={tasks}
         setEditTask={setEditTask}
         onDelete={handleDelete}
+          onDrop={handleDrop}
+
       />
 
       <Column
@@ -32,6 +44,8 @@ function Board({ tasks, setTasks }) {
         tasks={tasks}
         setEditTask={setEditTask}
         onDelete={handleDelete}
+          onDrop={handleDrop}
+
       />
 
       {editTask && (

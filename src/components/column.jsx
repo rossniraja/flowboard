@@ -17,6 +17,8 @@ onDrop={handleDrop}>
         <h2>{title}</h2>
         {filteredTasks.map(task=>(
           <Card key={task.id}
+
+          id={task.id}
                 title={task.name}
                  description={task.description}
   priority={task.priority}
