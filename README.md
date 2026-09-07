@@ -1,29 +1,63 @@
-# FlowBoard
+<div align="center">
 
-A Kanban-style task management board built with React + Vite. Add tasks, move them across Todo / In Progress / Done, edit or delete them, and switch between Board, List, and Calendar views.
+# 🗂️ FlowBoard
 
-🔗 **Live demo:** [flowboard-views.vercel.app](https://flowboard-views.vercel.app/)
+**A Kanban-style task management board — built to feel like the real thing, not a tutorial clone.**
+
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black&style=flat-square)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white&style=flat-square)](https://vitejs.dev/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?logo=vercel&logoColor=white&style=flat-square)](https://flowboard-views.vercel.app/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](#license)
+
+**[🔗 Live Demo](https://flowboard-views.vercel.app/)** · **[Report Bug](https://github.com/rossniraja/flowboard/issues)** · **[Author](https://github.com/rossniraja)**
+
+</div>
 
 ---
 
-## Features
+### Three views. One source of truth. Zero backend.
 
-- **Kanban board view** — tasks organized into `Todo`, `Progress`, and `Done` columns
-- **Multiple views** — toggle between Board, List, and Calendar layouts
-- **Add / Edit / Delete tasks** — full CRUD on tasks via simple forms
-- **Task metadata** — title, description, priority, and due date per task
-- **Client-side state** — instant UI updates with React's `useState`, no backend needed
+FlowBoard isn't just a drag-and-drop toy — it's the same task list rendered three different ways (Board / List / Calendar), all synced off one shared state, with persistence so your board survives a refresh.
 
-## Tech Stack
+<div align="center">
+  <img src="./docs/demo-board.gif" alt="Kanban board with drag and drop" width="700"/>
+  <p><i>Drag a card, watch it persist. No page reload required.</i></p>
+</div>
 
-| Layer      | Tech                  |
-|------------|-----------------------|
-| Framework  | React 19              |
-| Build tool | Vite 8                |
-| Linting    | ESLint 10             |
-| Deployment | Vercel                |
+---
 
-## Project Structure
+## ✨ Features
+
+| | |
+|---|---|
+| 🧱 **Kanban board** | Tasks organized into `Todo` → `Progress` → `Done` columns |
+| 🖱️ **Drag & drop** | Move cards between columns via `dnd-kit`, state updates instantly |
+| 💾 **Persistent storage** | Tasks saved to `localStorage` — refresh the page, your board's still there |
+| 🔄 **Multi-view sync** | Board, List, and Calendar are three lenses on the *same* state, not three separate data sources |
+| ✏️ **Full CRUD** | Add, edit, and delete tasks with title, description, priority, and due date |
+| ⚡ **Instant UI** | Powered by React's `useState`/`useEffect` — no API calls, no loading spinners |
+
+<div align="center">
+  <img src="./docs/demo-views.gif" alt="Switching between Board, List, and Calendar views" width="700"/>
+  <p><i>Same data, three views — Board → List → Calendar.</i></p>
+</div>
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Tech |
+|---|---|
+| **Framework** | React 19 |
+| **Build tool** | Vite 8 |
+| **Drag & drop** | dnd-kit |
+| **Linting** | ESLint 10 |
+| **Persistence** | `localStorage` (browser-native, no backend) |
+| **Deployment** | Vercel |
+
+---
+
+## 📂 Project Structure
 
 ```
 src/
@@ -39,7 +73,9 @@ src/
 └── main.jsx                 # App entry point
 ```
 
-## Getting Started
+---
+
+## 🚀 Getting Started
 
 ```bash
 # Clone the repo
@@ -56,18 +92,26 @@ npm run dev
 npm run build
 ```
 
-## Roadmap
+---
 
-- [ ] Drag-and-drop between columns
-- [ ] Persistent storage (localStorage or a backend)
+## 🗺️ Roadmap
+
+- [x] Drag-and-drop between columns
+- [x] Persistent storage (`localStorage`)
 - [ ] Task filtering by priority / due date
+- [ ] Backend sync (Node/Express) for multi-device persistence
 - [ ] User auth for multi-user boards
-
-## Author
-
-**Rossni Raja**
-[GitHub](https://github.com/rossniraja)
 
 ---
 
-*Built as a personal project to practice React component architecture, state management, and deployment workflows.*
+## 👩‍💻 Author
+
+**Rossni Raja**
+
+[![GitHub](https://img.shields.io/badge/GitHub-rossniraja-181717?logo=github&style=flat-square)](https://github.com/rossniraja)
+
+---
+
+<div align="center">
+  <sub>Built as part of a frontend portfolio — feedback and PRs welcome.</sub>
+</div>
