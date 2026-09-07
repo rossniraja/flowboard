@@ -1,6 +1,13 @@
 function Card({ title, description,priority,dueDate,onEdit,onDelete}) {
+ const handleDragStart =(e)=>{
+  e.dataTransfer.setData("taskId",task.id);
+ };
+ 
+ 
   return (
-    <div className="card">
+    <div className="card"
+    draggable
+    onDragStart={handleDragStart}>
       <h3>{title}</h3>
       <p>{description}</p>
       <p>{priority}</p>

@@ -1,5 +1,5 @@
 /* =========================
-   RESET
+   RESET & SYSTEM BASE
 ========================= */
 
 * {
@@ -9,9 +9,11 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #172033;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 button,
@@ -19,64 +21,155 @@ input,
 textarea,
 select {
   font: inherit;
+  color: inherit;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #21262d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #30363d;
 }
 
 
-/* =========================
-   MAIN APP
-========================= */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 #root {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 40px 48px;
 }
+
+
+/* =========================================================
+   ELEGANT HEADER DESIGN
+========================================================= */
+
 h1 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #3157d5;
-  margin-bottom: 20px;
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
   letter-spacing: -0.5px;
+  margin-bottom: 28px;
+
+  /* Premium Gradient Text Effect */
+  background: linear-gradient(135deg, #ffffff 0%, #a5d6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* =========================
-   TOP BUTTONS
-========================= */
+/* Elegant Underline Accent Line */
+h1::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #388bfd, #58a6ff);
+  margin-top: 10px;
+  border-radius: 2px;
+}
 
-#root > button {
-  padding: 10px 18px;
-  margin-right: 10px;
-  margin-bottom: 25px;
 
-  border: 1px solid #d9deea;
-  border-radius: 8px;
+/* =========================================================
+   SPACIOUS HORIZONTAL NAVIGATION BUTTONS
+========================================================= */
 
-  background: white;
-  color: #344054;
+/* Parent Wrapper for Button Navigation Bar */
+.nav-bar,
+.view-switcher,
+.header-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  
+  /* Generous gap spacing to prevent congestion */
+  gap: 16px;
+  
+  margin-top: 10px;
+  margin-bottom: 36px;
+  width: 100%;
+}
+
+/* Individual Top Horizontal Buttons */
+#root > button,
+.nav-bar button,
+.view-switcher button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Spacious, comfortable padding */
+  padding: 12px 26px;
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  border: 1px solid #30363d;
+  border-radius: 10px;
+
+  background: #161b22;
+  color: #8b949e;
 
   cursor: pointer;
-  transition: 0.2s ease;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-#root > button:hover {
-  background: #eef2ff;
-  transform: translateY(-1px);
+/* Hover State */
+#root > button:hover,
+.nav-bar button:hover,
+.view-switcher button:hover {
+  background: #21262d;
+  color: #f0f6fc;
+  border-color: #58a6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
-#root > button:first-of-type {
-  background: #3157d5;
-  color: white;
-  border-color: #3157d5;
+/* Active Button Highlight State */
+#root > button:first-of-type,
+#root > button.active,
+.view-switcher button.active {
+  background: #1f6feb;
+  color: #ffffff;
+  border-color: #388bfd;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(31, 111, 235, 0.4);
 }
 
-#root > button:first-of-type:hover {
-  background: #2748b8;
+#root > button:first-of-type:hover,
+#root > button.active:hover,
+.view-switcher button.active:hover {
+  background: #388bfd;
 }
 
 
-/* =========================
-   BOARD
-========================= */
+/* =========================================================
+   BOARD (KANBAN VIEW)
+========================================================= */
 
 .board {
   display: grid;
@@ -91,127 +184,137 @@ h1 {
 }
 
 .board > div:not(form) {
-  background: #eef1f6;
-  padding: 20px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  padding: 22px;
   border-radius: 14px;
-  min-height: 450px;
+  min-height: 480px;
 }
 
 .board h2 {
-  margin-bottom: 18px;
-  font-size: 18px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f0f6fc;
   text-transform: capitalize;
+  letter-spacing: 0.3px;
 }
 
 
-/* =========================
+/* =========================================================
    CARD
-========================= */
+========================================================= */
 
 .card {
-  background: white;
-
+  background: #0d1117;
   padding: 18px;
   margin-bottom: 14px;
 
-  border: 1px solid #e1e5ec;
+  border: 1px solid #30363d;
   border-radius: 12px;
 
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
-
-  transition: 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+  border-color: #58a6ff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
 
 .card h3 {
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f0f6fc;
 }
 
 .card p {
-  margin-bottom: 7px;
-  color: #667085;
-  font-size: 14px;
-  line-height: 1.4;
+  margin-bottom: 10px;
+  color: #8b949e;
+  font-size: 13.5px;
+  line-height: 1.45;
 }
 
 .card button {
-  padding: 7px 12px;
+  padding: 7px 14px;
   margin-top: 10px;
-  margin-right: 7px;
+  margin-right: 8px;
+
+  font-size: 12.5px;
+  font-weight: 600;
 
   border: none;
-  border-radius: 7px;
+  border-radius: 6px;
 
   cursor: pointer;
   transition: 0.2s ease;
 }
 
 .card button:first-of-type {
-  background: #eef2ff;
-  color: #3157d5;
+  background: #1f6feb22;
+  color: #58a6ff;
+  border: 1px solid #1f6feb44;
 }
 
 .card button:first-of-type:hover {
-  background: #dfe6ff;
+  background: #1f6feb44;
 }
 
 .card button:last-of-type {
-  background: #fff0f0;
-  color: #d64545;
+  background: #da363322;
+  color: #f85149;
+  border: 1px solid #da363344;
 }
 
 .card button:last-of-type:hover {
-  background: #ffe0e0;
+  background: #da363344;
 }
 
 
-/* =========================
+/* =========================================================
    FORM
-========================= */
+========================================================= */
 
 form {
   width: 100%;
   max-width: 520px;
 
   margin: 25px auto;
-  padding: 25px;
+  padding: 28px;
 
-  background: white;
+  background: #161b22;
 
-  border: 1px solid #e1e5ec;
+  border: 1px solid #30363d;
   border-radius: 14px;
 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 form input, 
 form textarea, 
 form select { 
   width: 100%; 
- 
-  padding: 11px 13px; 
-  margin-bottom: 15px; 
- 
-  border: 1px solid #d9dee8; 
+  
+  padding: 12px 14px; 
+  margin-bottom: 16px; 
+  
+  border: 1px solid #30363d; 
   border-radius: 8px; 
- 
+  
   outline: none; 
-  background: white;
+  background: #0d1117;
 
-  color: #172033;
+  color: #f0f6fc;
 }
-/* FORM PLACEHOLDER TEXT */
 
 form input::placeholder,
 form textarea::placeholder {
-  color: #667085;
+  color: #8b949e;
   opacity: 1;
 }
+
 form textarea {
   min-height: 100px;
   resize: vertical;
@@ -220,34 +323,35 @@ form textarea {
 form input:focus,
 form textarea:focus,
 form select:focus {
-  border-color: #3157d5;
-  box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.08);
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
 }
 
 form button {
-  padding: 10px 16px;
+  padding: 11px 18px;
   margin-right: 8px;
 
   border: none;
   border-radius: 8px;
 
-  background: #3157d5;
-  color: white;
+  background: #238636;
+  color: #ffffff;
+  font-weight: 600;
 
   cursor: pointer;
 }
 
 form button:hover {
-  background: #2748b8;
+  background: #2ea043;
 }
 
 form button[type="button"] {
-  background: #e9ecf2;
-  color: #344054;
+  background: #21262d;
+  color: #c9d1d9;
 }
 
 form button[type="button"]:hover {
-  background: #dfe3e9;
+  background: #30363d;
 }
 
 
@@ -259,67 +363,42 @@ form button[type="button"]:hover {
   width: 100%;
   margin-top: 5px;
 
-  background: white;
+  background: #161b22;
 
-  border: 1px solid #e4e7ec;
+  border: 1px solid #30363d;
   border-radius: 12px;
 
   overflow: hidden;
 }
 
-
-/* HEADER + ROW = EXACT SAME GRID */
-
 .list-header,
 .list-row {
   display: grid;
-
-  /*
-    Task       Status    Priority    Due Date
-    2.5fr      1fr       1fr         1.4fr
-  */
-
   grid-template-columns: 2.5fr 1fr 1fr 1.4fr;
-
   align-items: center;
-
   column-gap: 40px;
 
   padding-left: 30px;
   padding-right: 30px;
 }
 
-
-/* =========================
-   LIST HEADER
-========================= */
-
 .list-header {
-  min-height: 58px;
+  min-height: 54px;
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
 
-  background: #f8f9fb;
-
-  border-bottom: 1px solid #e4e7ec;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  color: #667085;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8b949e;
 }
 
-
-/* =========================
-   LIST ROW
-========================= */
-
 .list-row {
-  min-height: 70px;
-
-  border-bottom: 1px solid #edf0f3;
-
+  min-height: 68px;
+  border-bottom: 1px solid #21262d;
   font-size: 14px;
-
-  color: #475467;
+  color: #c9d1d9;
 }
 
 .list-row:last-child {
@@ -327,52 +406,39 @@ form button[type="button"]:hover {
 }
 
 .list-row:hover {
-  background: #fafbfc;
+  background: #21262d55;
 }
-
-
-/* TASK */
 
 .task-name {
   font-weight: 600;
-  color: #1d2939;
-
+  color: #f0f6fc;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-
-/* PRIORITY */
-
 .priority {
-  color: #475467;
+  color: #8b949e;
 }
 
-
-/* DATE */
-
 .due-date {
-  color: #667085;
+  color: #8b949e;
   white-space: nowrap;
 }
 
 
-/* =========================
-   STATUS
-========================= */
+/* =========================================================
+   STATUS BADGES
+========================================================= */
 
 .status {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
-  min-width: 72px;
-
-  padding: 5px 11px;
-
-  border-radius: 6px;
+  min-width: 76px;
+  padding: 5px 12px;
+  border-radius: 20px;
 
   font-size: 12px;
   font-weight: 600;
@@ -381,18 +447,21 @@ form button[type="button"]:hover {
 }
 
 .status.todo {
-  background: #eef2ff;
-  color: #4055b5;
+  background: #1f6feb22;
+  color: #58a6ff;
+  border: 1px solid #1f6feb44;
 }
 
 .status.progress {
-  background: #fff6df;
-  color: #a66a00;
+  background: #d2992222;
+  color: #f2cc60;
+  border: 1px solid #d2992244;
 }
 
 .status.done {
-  background: #eaf8f0;
-  color: #18864b;
+  background: #23863622;
+  color: #56d364;
+  border: 1px solid #23863644;
 }
 
 
@@ -406,191 +475,125 @@ form button[type="button"]:hover {
 }
 
 .calendar-view h2 {
-  margin-bottom: 30px;
-
-  font-size: 22px;
-  font-weight: 650;
+  margin-bottom: 24px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f0f6fc;
 }
-
-
-/* TIMELINE */
 
 .timeline {
   position: relative;
-
   display: flex;
   align-items: flex-start;
-
   width: 100%;
 
-  padding: 20px 30px 40px;
+  padding: 24px 30px 40px;
+
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
 
   overflow-x: auto;
 }
 
-
-/* HORIZONTAL LINE */
-
 .timeline::before {
   content: "";
-
   position: absolute;
-
-  top: 62px;
-
+  top: 66px;
   left: 30px;
   right: 30px;
-
   height: 2px;
-
-  background: #d9dee7;
+  background: #30363d;
 }
-
-
-/* EACH TASK */
 
 .timeline-task {
   position: relative;
-
   flex: 1;
-
   min-width: 220px;
-
   text-align: center;
 }
 
-
-/* DATE */
-
 .timeline-date {
   height: 32px;
-
   font-size: 13px;
   font-weight: 600;
-
-  color: #667085;
-
+  color: #8b949e;
   white-space: nowrap;
 }
 
-
-/* DOT */
-
 .timeline-point {
   position: relative;
-
   z-index: 2;
-
   width: 14px;
   height: 14px;
-
-  margin: 20px auto 24px;
-
+  margin: 18px auto 24px;
   border-radius: 50%;
-
-  background: #3157d5;
-
-  border: 3px solid #f5f7fb;
+  background: #58a6ff;
+  border: 3px solid #161b22;
+  box-shadow: 0 0 8px rgba(88, 166, 255, 0.4);
 }
-
-
-/* TASK CARD */
 
 .timeline-content {
   width: 190px;
-
   min-height: 90px;
-
   margin: 0 auto;
-
   padding: 16px;
-
   text-align: left;
-
-  background: white;
-
-  border: 1px solid #e3e6eb;
-
+  background: #0d1117;
+  border: 1px solid #30363d;
   border-radius: 10px;
-
-  box-shadow: 0 3px 10px rgba(16, 24, 40, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .timeline-content h3 {
-  margin-bottom: 10px;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  color: #1d2939;
-
+  margin-bottom: 8px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #f0f6fc;
   word-break: break-word;
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE DESIGN
 ========================================================= */
 
 @media (max-width: 900px) {
-
   #root {
-    padding: 25px;
+    padding: 24px 20px;
   }
 
   .board {
     grid-template-columns: 1fr;
   }
 
-  .list-header,
-  .list-row {
-    column-gap: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+  .nav-bar,
+  .view-switcher,
+  .header-navigation {
+    gap: 10px;
   }
 }
 
-
 @media (max-width: 600px) {
-
   #root {
-    padding: 18px;
+    padding: 16px;
   }
 
   h1 {
-    font-size: 27px;
+    font-size: 26px;
   }
 
-
-  /* Keep LIST as 4 columns.
-     Allow horizontal scrolling instead of
-     destroying the alignment. */
-
-  .list-view {
-    overflow-x: auto;
-  }
-.list-header,
-.list-row {
-  display: grid;
-  grid-template-columns: 300px 150px 150px 180px;
-  column-gap: 30px;
-  align-items: center;
-  padding: 0 30px;
-}
-
-  /* Timeline */
-
-  .timeline {
-    padding-left: 20px;
-    padding-right: 20px;
+  .nav-bar,
+  .view-switcher,
+  .header-navigation {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .timeline-task {
-    min-width: 210px;
-  }
-
-  .timeline::before {
-    left: 20px;
-    right: 20px;
+  #root > button,
+  .nav-bar button,
+  .view-switcher button {
+    padding: 9px 16px;
+    font-size: 13px;
   }
 }

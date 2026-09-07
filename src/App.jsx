@@ -3,7 +3,7 @@ import ListView from "./components/ListView";
 import Board from "./components/Board";
 import AddTaskForm from "./components/AddTaskForm";
 import "./App.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function App() {
   const [tasks, setTasks] = useState(()=>{
@@ -20,7 +20,7 @@ function App() {
       name: "seminar",
       status: "progress",
     },
-    ,
+    
   {
     id: "3",
     name: "project",
@@ -64,7 +64,7 @@ function App() {
   ];
 });
 useEffect(()=>{
-  localStorage.setItem("tasks",JSON.stringyfy(tasks));
+  localStorage.setItem("tasks",JSON.stringify(tasks));
 },[tasks]);
   const [view, setView] = useState("board");
   const [showForm, setShowForm] = useState(false);
