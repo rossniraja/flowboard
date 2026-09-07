@@ -6,7 +6,10 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState(()=>{
+    const savedTasks=localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks):
+    [
     {
       id: "1",
       name: "assign",
@@ -17,8 +20,52 @@ function App() {
       name: "seminar",
       status: "progress",
     },
-  ]);
-
+    ,
+  {
+    id: "3",
+    name: "project",
+    status: "todo",
+  },
+  {
+    id: "4",
+    name: "presentation",
+    status: "done",
+  },
+  {
+    id: "5",
+    name: "study",
+    status: "progress",
+  },
+  {
+    id: "6",
+    name: "report",
+    status: "todo",
+  },
+  {
+    id: "7",
+    name: "meeting",
+    status: "done",
+  },
+  {
+    id: "8",
+    name: "research",
+    status: "progress",
+  },
+  {
+    id: "9",
+    name: "documentation",
+    status: "todo",
+  },
+  {
+    id: "10",
+    name: "submission",
+    status: "done",
+  },
+  ];
+});
+useEffect(()=>{
+  localStorage.setItem("tasks",JSON.stringyfy(tasks));
+},[tasks]);
   const [view, setView] = useState("board");
   const [showForm, setShowForm] = useState(false);
 
